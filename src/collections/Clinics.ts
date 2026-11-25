@@ -47,6 +47,16 @@ export const Clinics: CollectionConfig = {
     },
     // Add new clinic fields here, above the time slots list, so they also show above it in /admin.
 
+    // W5: what a user should bring to the clinic, one short item per row (for example "your bike").
+    // Not required: the clinics already on the live site have no value yet, and a required column would
+    // make the migration stop on them.
+    {
+      name: 'whatToBring',
+      type: 'array',
+      admin: { description: 'Things to bring to the clinic, one per row, for example your bike or a lock.' },
+      fields: [{ name: 'item', type: 'text', required: true }],
+    },
+
     // The reverse side (a join) of the one-to-many: one clinic has many time slots. The link is stored
     // once, in each time slot's "clinic" field.
     {
