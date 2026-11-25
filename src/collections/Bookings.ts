@@ -59,6 +59,17 @@ export const Bookings: CollectionConfig = {
     },
     // Add new booking fields here.
 
+    // W6: the repairs the user ticked in the booking form. Many repairs per booking, and a repair is in
+    // many bookings (a many-to-many). Not required: a booking without a repair is fine, and the
+    // bookings already on the live site have none. The other side is the join on repairs.
+    {
+      name: 'repairs',
+      type: 'relationship',
+      relationTo: 'repairs',
+      hasMany: true,
+      admin: { description: 'The repairs this user asked for. Leave empty when none was ticked.' },
+    },
+
     // The optional members' area (src/lib/membersArea.ts): the member who was logged in when they
     // booked. Only the booking form's server code fills it in, from the log-in cookie, never from what
     // the form sends. Empty for every booking made without logging in, and always while the area is off.

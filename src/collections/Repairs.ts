@@ -21,5 +21,14 @@ export const Repairs: CollectionConfig = {
       type: 'textarea',
     },
     // Add new repair fields here.
+
+    // W6: the reverse side of Bookings.repairs. It stores nothing: it lists the bookings that ticked
+    // this repair, so each repair's page in /admin shows them.
+    {
+      name: 'bookings',
+      type: 'join',
+      collection: 'bookings',
+      on: 'repairs',
+    },
   ],
 }
