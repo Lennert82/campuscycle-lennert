@@ -35,13 +35,13 @@ library. Date of the test: 6 May 2026.
 
 </td></tr></table>
 
-- **Task:** TODO: the exact words you read to the person
-- **Who took part:** TODO: no name; say what they had seen of the site before
-- **Success:** TODO: what counts as success for the task
-- **Version of the site:** TODO:
-- **Device and browser:** TODO:
-- **Place:** TODO:
-- **Date of the test:** TODO: day, month and year
+- **Task:** "Book a place at the Saturday repair clinic on 28 November at 15:00 for a check and a small repair. Use made-up details."
+- **Who took part:** Nobody else was watched. The site's builder did the task with an AI assistant (Claude) that drove the browser, so this is a first look by people who already know the site, not a test with a new user.
+- **Success:** The booking is saved with both repairs, without help, and the user knows what the two repairs cost before pressing the button.
+- **Version of the site:** The live site, after pull request #2 (the repair choice).
+- **Device and browser:** A MacBook laptop, Chrome, a normal window.
+- **Place:** At home.
+- **Date of the test:** 25 November 2026
 
 ## What we saw
 
@@ -59,7 +59,8 @@ would ask; we watched one person.
 
 | # | Behaviour (what you saw) | Interpretation (what you think it means) | Uncertainty (what you are not sure of) |
 | --- | --- | --- | --- |
-| 1 | TODO: | TODO: | TODO: |
+| 1 | At "Repairs (optional)" the choices only said "Check", "Each small repair" and "Full service". The prices are in the list far above the form, so the person had to scroll up to see them. | A user who ticks a repair does not see what it costs, so the choice is made half blind. | One person (twice the same one) is not enough to know how often others would scroll back or give up. |
+| 2 | After pressing "Book this slot", the confirmation page showed the clinic, the time and the place, but not the two repairs that were ticked. | The user cannot check that the repairs were saved. | We did not test whether users look for this. It was saved: /admin shows both repairs on the booking. |
 
 ## What we changed, and the retest
 
@@ -79,10 +80,10 @@ and a child without asking.
 
 </td></tr></table>
 
-- **Finding:** TODO: the number of the finding in the table above
-- **Fixed or not fixed:** TODO: with the reason
-- **What we changed:** TODO:
-- **Pull request:** TODO: its number after a #
+- **Finding:** 1
+- **Fixed or not fixed:** Fixed. It was the most important problem: it comes before the user commits to a booking. Finding 2 is not fixed yet; the booking is saved correctly and the confirmation page is outside this change.
+- **What we changed:** Each repair's choice in the booking form now shows its price, for example "Each small repair, EUR 5". The price is read from the repair's own record, the same one as the price list, so nothing is copied.
+- **Pull request:** #3
 
 ## The release check
 
@@ -99,9 +100,9 @@ see, and we fixed it. Decision: release, with one follow-up: a test with a scree
 
 </td></tr></table>
 
-- **Device and browser:** TODO:
-- **What we found with the keyboard only, and at phone width:** TODO:
-- **Our decision:** TODO: release, release with a named follow-up, or hold
+- **Device and browser:** Not run yet
+- **What we found with the keyboard only, and at phone width:** Not run yet
+- **Our decision:** Not run yet
 
 ## Not tested yet
 
@@ -116,4 +117,5 @@ because of it. One or two rows are enough.
 
 | Not tested | What could go wrong because of it |
 | --- | --- |
-| TODO: | TODO: |
+| A real user who had never seen the site | We only watched people who know it, so unclear words or steps stay hidden. |
+| Keyboard only, phone width and a screen reader | A user who cannot use a mouse, or who has a small screen, may get stuck on the form. |
